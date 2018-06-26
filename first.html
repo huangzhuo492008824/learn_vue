@@ -1,0 +1,69 @@
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="static"
+			v-bind:class="{ active: isActive, 'text-danger': hasError }">
+			hehe
+		</div>
+
+
+	
+	  <template v-if="loginType === 'username'">
+		<label>Username</label>
+		<input placeholder="Enter your username">
+	  </template>
+	  <template v-else>
+		<label>Email</label>
+		<input placeholder="Enter your email address">
+	  </template></br>
+	  <button @click="changeLoginType">toggle</button>
+		<div>
+			<span v-for="n in 10">{{ n }} </span>
+		</div>
+		<ul>
+			<li v-for="(item, index) of items">
+				{{ parentMessage }} - {{ index }} - {{ item.message }}
+			</li>
+			<li v-for="value in object">
+				{{ value }}
+			</li>
+		</ul>
+
+	</div>
+</body>
+
+<script>
+	var vm = new Vue({
+		el: "#app",
+		data: {
+			isActive: true,
+			hasError: false,
+			loginType: 'username',
+			parentMessage: 'Parent',
+    	items: [
+				{ message: 'Foo' },
+				{ message: 'Bar' }
+    	],
+			object: {
+				firstName: 'John',
+				lastName: 'Doe',
+				age: 30
+			},
+		},
+		methods: {
+			changeLoginType: function(){
+				if (this.loginType === 'username'){
+					this.loginType = 'email';
+				} else{
+					this.loginType = 'username';
+				}
+			}
+		}
+		
+	})
+</script>
+
+</html>
